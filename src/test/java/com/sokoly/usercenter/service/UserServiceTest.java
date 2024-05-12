@@ -21,7 +21,7 @@ class UserServiceTest {
         user.setUserAccount("14334494");
         user.setAvatarUrl("");
         user.setGender(0);
-        user.setUserPassword("xxx");
+        user.setUserPassword("12345678");
         user.setPhone("123");
         user.setEmail("5654");
         user.setUserStatus(0);
@@ -31,6 +31,13 @@ class UserServiceTest {
         boolean result = userService.save(user);
         System.out.println(user.getId());
         Assertions.assertTrue(result);
+        //userService.userRegister("14334494","123456789","123456789");
+    }
+
+    @Test
+    public void testRegister(){
+        long l = userService.userRegister("14334", "123456789", "123456789");
+        Assertions.assertTrue(l > 0);
     }
 
 

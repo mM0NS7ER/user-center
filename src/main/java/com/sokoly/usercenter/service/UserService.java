@@ -1,7 +1,8 @@
 package com.sokoly.usercenter.service;
 
-import com.sokoly.usercenter.model.domain.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.sokoly.usercenter.model.domain.User;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
 * @author YQing
@@ -19,5 +20,21 @@ public interface UserService extends IService<User> {
      * @return 新用户 id
      */
     long userRegister(String userAccount, String userPassword, String checkPassword /*TODO String planetCode*/);
+
+    /**
+     *
+     * @param userAccount 用户账户
+     * @param userPassword 用户密码
+     * @param request
+     * @return 用户信息（已脱敏）
+     */
+    User userLogin(String userAccount, String userPassword, HttpServletRequest request );
+
+    /**
+     *
+     * @param originUser
+     * @return
+     */
+    User getSafetyUser(User originUser);
 
 }
