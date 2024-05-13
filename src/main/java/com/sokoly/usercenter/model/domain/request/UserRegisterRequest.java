@@ -1,4 +1,4 @@
-package com.sokoly.usercenter.model.request;
+package com.sokoly.usercenter.model.domain.request;
 
 import lombok.Data;
 

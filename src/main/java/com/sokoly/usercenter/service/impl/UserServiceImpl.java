@@ -2,6 +2,7 @@ package com.sokoly.usercenter.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.sokoly.usercenter.constant.UserConstant;
 import com.sokoly.usercenter.mapper.UserMapper;
 import com.sokoly.usercenter.model.domain.User;
 import com.sokoly.usercenter.service.UserService;
@@ -34,13 +35,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * 盐值，混淆密码
      */
     private static final String SALT = "sokoly";
-
-    /**
-     * 用户登录态 键
-     */
-    private static final String USER_LOGIN_STATE = "user_login_state";
-
-
 
     /**
      * 用户注册
@@ -140,7 +134,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 3. 用户脱敏
         User safetyUser = getSafetyUser(user);
         // 4. 记录用户的登录态
-        request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);
+        request.getSession().setAttribute(UserConstant.USER_LOGIN_STATE, safetyUser);
 
         return safetyUser;
 
@@ -165,7 +159,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         safetyUser.setPhone(originUser.getPhone());
         safetyUser.setEmail(originUser.getEmail());
 //        safetyUser.setPlanetCode(originUser.getPlanetCode());
-//        safetyUser.setUserRole(originUser.getUserRole());
+        safetyUser.setUserRole(originUser.getUserRole());
         safetyUser.setUserStatus(originUser.getUserStatus());
         safetyUser.setCreateTime(originUser.getCreateTime());
         return safetyUser;
